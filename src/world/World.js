@@ -6,7 +6,7 @@ import assignTemperature from './models/IdealizedTemperature.js';
 
 export default class World {
     constructor(config) {
-        const cls = this.constructor;
+        const { createControlPoints } = this.constructor;
         const models = config.models || [
             // independent
             assignElevation,
@@ -19,7 +19,7 @@ export default class World {
         this.config = config;
         this.radius = config.radius || 1;
         this.seaLevel = typeof config.seaLevel !== 'undefined' ? config.seaLevel : 0.7;
-        this.controlPoints = cls.createControlPoints(config.numberOfControlPoints || 256);
+        this.controlPoints = createControlPoints(config.numberOfControlPoints || 256);
 
         models.forEach((model) => model(this));
 
@@ -63,8 +63,6 @@ export default class World {
 
     getClosestPoints(lat, long) {
         // maximumRadius is empirically derived, but seems to work..
-        //  - TODO try to relate to number of points?
-        //  - TODO move into (optional?) argument?
         const maximumRadius = Math.PI * 2 * this.controlPoints.length ** -0.5;
         const bounds = Sphere.boundingCircle(lat, long, maximumRadius);
         const crossingMeridian = bounds.minLong > bounds.maxLong;
@@ -119,8 +117,9 @@ export default class World {
             0,
         );
 
-        let elevation = 0; let temperature = 0; let
-            precipitation = 0;
+        let elevation = 0;
+        let temperature = 0;
+        let precipitation = 0;
 
         for (let i = 0; i < closestPoints.length; i += 1) {
             const { controlPoint } = closestPoints[i];

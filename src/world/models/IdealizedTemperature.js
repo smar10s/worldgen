@@ -43,9 +43,7 @@ function getTrappedEnergy(radiatedEnergy, reflectedEnergy, atmosphericAbsorption
 export default function assignTemperature(world) {
     for (let i = 0; i < world.controlPoints.length; i += 1) {
         const controlPoint = world.controlPoints[i];
-        const { lat } = controlPoint;
-        const { elevation } = controlPoint;
-        const { precipitation } = controlPoint;
+        const { lat, elevation, precipitation } = controlPoint;
         const { seaLevel } = world;
 
         const atmosphericInsolationEnergy = Math.cos(lat);

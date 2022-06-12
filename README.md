@@ -18,7 +18,7 @@ Browser GET arguments:
 - `seed`: Any initial seed string or number, or "earth" for Earth-like elevation.
 - `numberOfControlPoints`: Number of points to initially assign to sphere. Default: 256.
 - `detailLevel`: Number of times to sub-divide initial control points by. Higher creates more detail but performs exponential slower. Default: 4.
-- `seaLevel`: Sea level expressed between 0 and 1. Higher means more land. Default: 0.7.
+- `seaLevel`: Sea level expressed between 0 and 1. Higher means less land. Default: 0.7.
 - `textureHeight`: threejs texture height in pixels. Higher is better, but browsers have limits. Default: 512.
 - `bumpMap`: "true" to bump map texture.
 - `showTemperature`: "true" to show temperature gradient instead of terrain.
